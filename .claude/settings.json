@@ -1,0 +1,7 @@
+{
+  "env": {
+    "AWS_PROFILE": "claude-readonly",
+    "AWS_CONFIG_FILE": "/Users/christianborja/Documents/GMT Projects/aws-cli/.aws/config",
+    "AWS_SHARED_CREDENTIALS_FILE": "/Users/christianborja/Documents/GMT Projects/aws-cli/.aws/credentials"
+  }
+}
