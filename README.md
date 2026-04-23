@@ -1,34 +1,33 @@
 # aws-cli-playgarden-claude
 
-Proyecto de trabajo para **revisar y documentar la arquitectura AWS de Playgarden** usando Claude Code junto con el AWS CLI.
+Working project to **review and document Playgarden's AWS architecture** using Claude Code together with the AWS CLI.
 
-## Propósito
+## Purpose
 
-Servir como entorno local aislado para explorar la infraestructura AWS de Playgarden (ECS, Lambdas, S3, RDS, Video on Demand, pipelines, etc.) de forma **segura y de solo lectura**, asistido por Claude Code.
+Serve as an isolated local environment to explore Playgarden's AWS infrastructure (ECS, Lambdas, S3, RDS, Video on Demand, pipelines, etc.) in a **safe, read-only** way, assisted by Claude Code.
 
-## Estructura
+## Structure
 
 ```
 .
-├── .aws/               # Config local del CLI (IGNORADO por git)
-│   ├── config          # Perfil 'claude-readonly' apuntando a us-east-1
-│   └── credentials     # Access keys del usuario IAM claude-readonly
+├── .aws/               # Local CLI config (IGNORED by git)
+│   ├── config          # 'claude-readonly' profile pointing to us-east-1
+│   └── credentials     # Access keys for the claude-readonly IAM user
 ├── .claude/
-│   └── settings.json   # Fuerza a Claude Code a usar el perfil read-only
+│   └── settings.json   # Forces Claude Code to use the read-only profile
 ├── .gitignore
 └── README.md
 ```
 
-## Acceso AWS
+## AWS Access
 
-Todas las operaciones se ejecutan con el usuario IAM **`claude-readonly`** (cuenta `318730995815`), cuyos permisos están restringidos intencionalmente para que no se pueda modificar ningún recurso.
+All operations run as the IAM user **`claude-readonly`** (account `318730995815`), whose permissions are intentionally restricted so that no resource can be modified.
 
 ```bash
 aws sts get-caller-identity
-# Arn: arn:aws:iam::318730995815:user/claude-readonly
 ```
 
-El archivo `.claude/settings.json` fuerza el uso de este perfil automáticamente dentro del proyecto:
+The `.claude/settings.json` file forces the use of this profile automatically within the project:
 
 ```json
 {
@@ -40,17 +39,17 @@ El archivo `.claude/settings.json` fuerza el uso de este perfil automáticamente
 }
 ```
 
-## Uso típico
+## Typical usage
 
-1. Abrir el proyecto con Claude Code.
-2. Pedirle a Claude que explore, describa o audite áreas específicas de la arquitectura, por ejemplo:
-   - "Describe los stacks ECS de Playgarden en los 3 ambientes."
-   - "Lista las Lambdas relacionadas con crons y lo que hace cada una."
-   - "Revisa la configuración del pipeline de video on demand."
-3. Claude responde ejecutando comandos read-only del AWS CLI.
+1. Open the project with Claude Code.
+2. Ask Claude to explore, describe, or audit specific areas of the architecture, for example:
+   - "Describe Playgarden's ECS stacks across the 3 environments."
+   - "List the Lambdas related to crons and what each one does."
+   - "Review the video on demand pipeline configuration."
+3. Claude responds by running read-only AWS CLI commands.
 
-## Seguridad
+## Security
 
-- El directorio `.aws/` contiene credenciales y **nunca** se sube al repositorio (ver `.gitignore`).
-- El usuario IAM no tiene permisos de escritura en ningún servicio relevante.
-- No commitear archivos que contengan access keys, secret keys, tokens, ni dumps de BD.
+- The `.aws/` directory contains credentials and is **never** pushed to the repository (see `.gitignore`).
+- The IAM user has no write permissions on any relevant service.
+- Do not commit files containing access keys, secret keys, tokens, or DB dumps.
