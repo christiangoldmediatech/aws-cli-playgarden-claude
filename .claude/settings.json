@@ -1,7 +1,69 @@
 {
   "env": {
-    "AWS_PROFILE": "claude-readonly",
     "AWS_CONFIG_FILE": "/Users/christianborja/Documents/GMT Projects/aws-cli/.aws/config",
+    "AWS_PROFILE": "claude-readonly",
     "AWS_SHARED_CREDENTIALS_FILE": "/Users/christianborja/Documents/GMT Projects/aws-cli/.aws/credentials"
-  }
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "gentle-ai review stop-hook --agent claude-code",
+            "timeout": 30,
+            "type": "command"
+          }
+        ],
+        "matcher": "startup|resume|clear|compact"
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "command": "gentle-ai review stop-hook --agent claude-code",
+            "timeout": 60,
+            "type": "command"
+          }
+        ],
+        "matcher": ""
+      },
+      {
+        "hooks": [
+          {
+            "async": true,
+            "command": "gentle-ai telemetry runtime claude --json",
+            "timeout": 5,
+            "type": "command"
+          }
+        ],
+        "matcher": ""
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "async": true,
+            "command": "gentle-ai telemetry runtime claude --json",
+            "timeout": 5,
+            "type": "command"
+          }
+        ],
+        "matcher": ""
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "command": "gentle-ai skill-registry refresh --quiet --no-gitignore --cwd \"${CLAUDE_PROJECT_DIR:-$PWD}\" || true",
+            "type": "command"
+          }
+        ],
+        "matcher": ""
+      }
+    ]
+  },
+  "outputStyle": "Gentleman"
 }

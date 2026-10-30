@@ -1,1 +1,3 @@
 .aws/
+# Local AI runtime state
+.atl/

@@ -1,20 +1,33 @@
 {
   "mcpServers": {
     "aws-api": {
-      "type": "stdio",
+      "args": [
+        "awslabs.aws-api-mcp-server@latest"
+      ],
       "command": "uvx",
-      "args": ["awslabs.aws-api-mcp-server@latest"],
       "env": {
+        "AWS_CONFIG_FILE": "/Users/christianborja/Documents/GMT Projects/aws-cli/.aws/config",
         "AWS_PROFILE": "claude-readonly",
         "AWS_REGION": "us-east-1",
-        "AWS_CONFIG_FILE": "/Users/christianborja/Documents/GMT Projects/aws-cli/.aws/config",
         "AWS_SHARED_CREDENTIALS_FILE": "/Users/christianborja/Documents/GMT Projects/aws-cli/.aws/credentials"
-      }
+      },
+      "type": "stdio"
     },
     "aws-docs": {
-      "type": "stdio",
+      "args": [
+        "awslabs.aws-documentation-mcp-server@latest"
+      ],
       "command": "uvx",
-      "args": ["awslabs.aws-documentation-mcp-server@latest"]
+      "type": "stdio"
+    },
+    "context7": {
+      "args": [
+        "-y",
+        "--package=@upstash/context7-mcp@2.2.5",
+        "--",
+        "context7-mcp"
+      ],
+      "command": "npx"
     }
   }
 }

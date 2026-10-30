@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "files": {
+    "jd-fix-agent.md": "b6ffa1e538a6c786767af20cfc0e4180af139b9c44da0f57dce5669e603be1ea",
+    "jd-judge-a.md": "6d2502f648d74c05405e4ae884dba40588bd22f8c2b1d1e857b3981b415346cd",
+    "jd-judge-b.md": "7cab3973bca64a8ed1d4b2858e1c52f5e026c4a91828daad64f92c3ac0bb9899",
+    "review-readability.md": "95505869ca27ac055ba28dd33d78c6c704a4ab3633a6aa1e24928b902932a657",
+    "review-refuter.md": "69bda33f52bce74ec8d45f0f7c340571a9b90adec63c6fc23137493ee172186f",
+    "review-reliability.md": "0394dbfc58f2f13979f018a645b20704e72f562f501dc5a68b54bc6c169b3a8f",
+    "review-resilience.md": "412ece5608db3ba2200c1c12fecb63a05d9d520f2b974617e387af5ebcf5f754",
+    "review-risk.md": "4c8f7c60f7015c5808c5a30cca85fbc3e332dae9c3a6d3de7ee96257d9e856f7"
+  }
+}
